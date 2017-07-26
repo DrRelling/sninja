@@ -1,493 +1,704 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<unload unload_date="2015-01-15 04:27:48">
+<unload unload_date="2017-07-26 14:17:52">
 <sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value=""/>
+<application_name/>
+<application_scope/>
+<application_version/>
 <collisions/>
 <commit_date/>
 <deleted/>
 <description/>
 <inserted/>
-<name>Snaug - SNinja</name>
+<name>Snaug - SNinja - Final</name>
+<new_count/>
 <origin_sys_id/>
 <release_date/>
-<remote_sys_id>26ecb8762b6135009728f70a89da15ea</remote_sys_id>
+<remote_sys_id>e091515bdba73200fdbb74b5ae9619a7</remote_sys_id>
 <state>loaded</state>
 <summary/>
-<sys_created_by>Snaug</sys_created_by>
-<sys_created_on>2015-01-15 04:27:47</sys_created_on>
-<sys_id>734ef4762b6135009728f70a89da153e</sys_id>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>Adam.Foster2@cbre.com</sys_created_by>
+<sys_created_on>2017-07-26 14:17:52</sys_created_on>
+<sys_id>32c81448dbd04b041f0dff9aae9619d6</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_updated_by>Snaug</sys_updated_by>
-<sys_updated_on>2015-01-15 04:27:47</sys_updated_on>
+<sys_updated_by>Adam.Foster2@cbre.com</sys_updated_by>
+<sys_updated_on>2017-07-26 14:17:52</sys_updated_on>
 <update_set display_value=""/>
 <update_source display_value=""/>
 <updated/>
 </sys_remote_update_set>
 <sys_update_xml action="INSERT_OR_UPDATE">
 <action>INSERT_OR_UPDATE</action>
-<application display_value=""/>
+<application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
 <name>sys_ui_script_4e58c8c62bc0310043ce127c17da159a</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script"><sys_ui_script action="INSERT_OR_UPDATE"><active>true</active><description/><global>false</global><name>sninja</name><script><![CDATA[var sninja;
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_script"&gt;&lt;sys_ui_script action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;description/&gt;&lt;global&gt;false&lt;/global&gt;&lt;name&gt;sninja&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var sninja;
 
 (function($) {
 
-    sninja = {
-        visible: false,
-        suggestion: '',
-        bloodhound: {},
-        tabCount : 0,
-        mode : 'default',
-        search: {},
-        commandArray : [],
-        commandIndex : 0,
-        commands: {
-
-            "list": {
-                "context": "table",
-                "command": function(item, newWindow) {
-                    sninja.openWindow(item + "_list.do", newWindow);
-                }
-
-            },
-            "form": {
-                "context": "table",
-                "command": function(item, newWindow) {
-                    sninja.openWindow(item + ".do", newWindow);
-                }
-
-            },
-
-            "dict": {
-                "context": "table",
-                "command": function(item, newWindow) {
-
-                    sninja.openWindow("sys_dictionary_list.do?sysparm_query=name=" + item, newWindow);
-                }
-            },
-            "recent": {
-                "context": "table",
-                "command": function(item, newWindow) {
-
-                    sninja.openWindow(item + "_list.do?sysparm_query=sys_updated_onONToday@javascript:gs.daysAgoStart(0)@javascript:gs.daysAgoEnd(0)", newWindow);
-
-                }
-            },
-            "do": {
-                "context": "any",
-                "command": function(item, newWindow) {
-
-                    sninja.openWindow(item + ".do", newWindow);
-
-                }
-            },
-
-            "open": {
-                "context": "any",
-                "command": function(item, newWindow, suggestion) {
-                    var link = "";
-
-                    if (suggestion.type == "direct") {
-                        link = suggestion.args;
-                    } else if (suggestion.type == "list") {
-                        link = suggestion.link + "_list.do?" + ["sysparm_query=" + suggestion.filter, "sysparm_view=" + suggestion.view].join("&");
-                    } else if (suggestion.type == "new") {
-                        link = suggestion.link + ".do?sysparm_id=-1&" + ["sysparm_query=" + suggestion.filter, "sysparm_view=" + suggestion.view].join("&");
-                    } else if (suggestion.type == "report") {
-                        link = "sys_report_template.do?jvar_report_id=" + suggestion.report + "&sysparm_from_list=true";
-                    } else if (suggestion.type == "detail") {
-                        link = suggestion.link + ".do?sysparm_query=" + suggestion.args + "&sysparm_view=" + suggestion.view;
-                    } else if (suggestion.type == "script") {
-                        newWindow = true;
-                        link = "sys.scripts.do?action=run_module&sys_id=" + suggestion.id;
-                    }
-
-
-                    if (link !== "") {
-                        sninja.openWindow(link, newWindow);
-                    }
-
-
-                }
-            },
-
-            "br" : {
-                "context" : "any",
-                "command" : function(item, newWindow){
-                    sninja.openWindow("sys_script_list.do?sysparm_query=table=" + item, newWindow);
-                }
-            },
-
-            "cs" : {
-                "context" : "any",
-                "command" : function(item, newWindow){
-                    sninja.openWindow("sys_client_script_list.do?sysparm_query=table=" + item, newWindow);
-                }
-            },
-
-            "acl" : {
-                "context" : "any",
-                "command" : function(item, newWindow){
-                    sninja.openWindow("sys_security_acl_list.do?sysparm_query=nameSTARTSWITH" + item, newWindow);
-                }
-            },
-
-            "act" : {
-                "context" : "any",
-                "command" : function(item, newWindow){
-                    sninja.openWindow("sys_ui_action_list.do?sysparm_query=table=" + item, newWindow);
-                }
-            },
-
-            "pol" : {
-                "context" : "any",
-                "command" : function(item, newWindow){
-                    sninja.openWindow("sys_ui_policy_list.do?sysparm_query=table=" + item, newWindow);
-                }
-            },      
-
-            "search" : {
-                "command" : function(item){
-                    sninja.openWindow(item[0] + "_list.do?sysparm_query=123TEXTQUERY321=" + item[2], false);
-                }                
-            }      
-        },
-
-        openWindow : function(link, newWindow){
-
-            if(!newWindow){
-                sninja.getMainWindow().location = link;
-            } else {
-                window.open(link);
-                
-            }
-        },
-
-        getTable : function(){
-            var table = sninja.getMainWindow().location.pathname.toString().split('.do')[0];
-            table = table.replace("/","");
-            table = table.replace("_list","");
-
-            return table;
-        },
-
-        init: function() {
-
-            for (var key in sninja.commands) {
-                if (sninja.commands.hasOwnProperty(key)) {
-                    sninja.commandArray.push(key);
-                }
-            }
-            this.getUserPermission()
-        },
-
-        startSninja: function() {
-            this.addSearch();
-            this.bindKeys();
-            
-            var data = localStorage["searchData"];
-
-            if(!data){
-                this.getACValues();
-            } else {
-                sninja.search = JSON.parse(data);
-                console.log("sninja - Loaded AC Values From Cache");
-                sninja.initializeTypeahead();
-            }
-
-        },
-
-        getMainWindow: function() {
-            var mainWindow = getMainWindow();
-
-            if (mainWindow === undefined) {
-                return self
-            } else {
-                return mainWindow
-            }
-
-        },
-
-        bindKeys: function() {
-
-            $(document).on('keydown', this.processEvent);
-            $(document).on('keyup', this.processEventUp);
-
-
-        },
-        processEventUp: function(event) {
-
-            if (sninja.visible) {
-                if ($("#sninja_search").is(":focus")) {
-                    var command = $("#sninja_search").val().split(".");
-                    if( command == "refresh"){
-                        sninja.getACValues();
-                        sninja.reset();
-                    }
-                    if (command.length == 2) {
-                        if (sninja.commands[command[1]]) {
-                            sninja.run_command(command);
-                        }
-                    }
-                }
-            } else if (event.which == 9 && sninja.visible == true) {
-
-
-                event.preventDefault();
-                event.stopPropagation();
-
-            }
-
-        },
-        processEvent: function(event) {
-            if (event.which == 192) {
-                if (!sninja.visible) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    sninja.loadSearch();
-
-                } else {
-                    sninja.closeSearch();
-                }
-            } else if (event.which == 27 && sninja.visible == true) {
-                sninja.closeSearch();
-                event.preventDefault();
-                event.stopPropagation();
-                sninja.reset();
-            } else if (event.which == 13 && sninja.visible == true) {
-                if ($("#sninja_search").is(":focus")) {
-
-                    var textVal = $("#sninja_search").val();
-                    
-                    if(sninja.mode == 'search'){
-                        textVal = textVal.replace("Search ","");
-                        var terms = textVal.split(":");
-                        command = [terms[0],'search',terms[1]];
-
-                    } else {
-                        command = textVal.split(".");
-                    }
-
-                    sninja.run_command(command);
-                    sninja.reset();
-                }
-            } else if (event.which == 190 && sninja.visible == true) {
-                var term = $("#sninja_search").val().split(".")[0];
-                sninja.search_for_command(term);
-
-            } else if (event.which == 9 && sninja.visible == true) {
-                var text = $("#sninja_search").val();
-                
-                if( typeof sninja.suggestion == 'object' && sninja.tabCount == 1 ){
-                    $("#sninja_search").val("Search " + text + ": ");
-                    sninja.tabCount = 2;
-                    sninja.mode = 'search';
-                } else {
-                    sninja.search_partial_match(text);
-                    
-                }
-
-                event.preventDefault();
-                event.stopPropagation();
-
-            } else if ( (event.which == 192 || event.which == 8) && sninja.visible == true) {
-                sninja.tabCount = 0;
-                sninja.mode = 'default';
-                sninja.suggestion = '';
-            }
-
-        },
-
-        search_for_command: function(term) {
-            sninja.bloodhound.tables.get(term, function(suggestions) {
-                suggestions.each(function(suggestion) {
-                    if (suggestion.value == term) {
-                        sninja.suggestion = suggestion;
-                    }
-                });
-            });
-
-            sninja.bloodhound.modules.get(term, function(suggestions) {
-                suggestions.each(function(suggestion) {
-                    if (suggestion.value == term) {
-                        sninja.suggestion = suggestion;
-                    }
-                });
-            });
-
-            return false;
-        },
-
-        search_partial_match: function(term) {
-            sninja.tabCount = 1;
-            sninja.bloodhound.tables.get(term, function(suggestions) {
-                if (suggestions.length !== 0) {
-                    $("#sninja_search").typeahead('val', suggestions[0].value);
-                    sninja.suggestion = suggestions[0];
-                }
-            });
-        },
-
-        run_command: function(command) {
-
-            if (command.length == 1) command.push("open");
-            if( command[0] == "current" ) command[0] = sninja.getTable();
-
-
-            if (sninja.suggestion == '') sninja.suggestion = {
-                value: command[0],
-                type: "table"
-            };
-
-            var commandName = command[1].toLowerCase();
-
-            if(commandName == 'search'){
-                sninja.commands[commandName].command(command);
-            } else if (sninja.commands[commandName].context == sninja.suggestion.type || sninja.commands[commandName].context == "any") {
-                sninja.commands[commandName].command(sninja.suggestion.value, command[1] === command[1].toUpperCase(), sninja.suggestion);
-            }
-
-
-            sninja.closeSearch();
-        },
-
-        reset: function() {
-
-            $("#sninja_search").typeahead('val', '');
-            sninja.suggestion = "";
-            sninja.tabCount = 0;
-            sninja.mode = 'default';
-            sninja.commandIndex = 0;            
-        },
-
-        closeSearch: function() {
-            sninja.reset();
-            sninja.visible = false;
-            $('.sninja').fadeOut(100);
-        },
-
-        loadSearch: function() {
-            sninja.suggestion = ''
-            $("#sninja_search").typeahead('val', '');
-            sninja.visible = true;
-
-            $('.sninja').fadeIn(50, function() {
-                $("#sninja_search").focus();
-            });
-        },
-
-        addSearch: function() {
-
-            var container = $("<div></div>").addClass("sninja").addClass("sninja-search-container").appendTo("body");
-            $("<input></input>").attr("id", "sninja_search").addClass("sninja-search-box").addClass("typeahead").appendTo(container);
-
-        },
-
-        initializeTypeahead: function() {
-
-
-            sninja.bloodhound.tables = new Bloodhound({
-                datumTokenizer: function(d) {
-                    return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
-                },
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                sorter: function(a, b) {
-
-                    if (a.value.length < b.value.length) {
-                        return -1;
-                    }
-                    if (a.value.length > b.value.length) {
-                        return 1;
-                    }
-
-                    return 0;
-                },
-                local: sninja.search.tables
-            });
-
-            sninja.bloodhound.modules = new Bloodhound({
-                datumTokenizer: function(d) {
-                    return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
-                },
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                local: sninja.search.modules
-            });
-
-            sninja.bloodhound.tables.initialize();
-            sninja.bloodhound.modules.initialize();
-
-            $('#sninja_search').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'tables',
-                displayKey: 'value',
-                source: sninja.bloodhound.tables.ttAdapter(),
-                templates: {
-                    suggestion: Handlebars.compile('<p><strong>{{value}}</strong></p>')
-                }
-            }, {
-                name: 'modules',
-                displayKey: 'value',
-                source: sninja.bloodhound.modules.ttAdapter(),
-                templates: {
-                    suggestion: Handlebars.compile('<p><strong>{{title}}</strong> ({{section}})</p>')
-                }
-
-            }).bind('typeahead:selected', function(obj, datum, name) {
-                sninja.suggestion = datum
-            }).bind('typeahead:autocompleted', function(obj, datum, name) {
-                sninja.suggestion = datum;
-            }).bind('typeahead:cursorchanged', function(obj, datum, name) {
-                sninja.suggestion = datum;
-            });
-
-
-
-        },
-
-        getACValues: function() {
-            var ga = new GlideAjax("SNinja");
-            ga.addParam('sysparm_name', 'getACValues');
-            console.log("sninja - Loading AC Values")
-            ga.getXML(function(response) {
-                var data = response.responseXML.documentElement.getAttribute("answer");
-                localStorage["searchData"] = data;
-                sninja.search = JSON.parse(data);
-                sninja.initializeTypeahead();
-            });
-        },
-
-        getUserPermission: function() {
-            var ga = new GlideAjax("SNinja");
-            ga.addParam('sysparm_name', 'getUserPermission');
-
-            ga.getXML(function(response) {
-                var data = response.responseXML.documentElement.getAttribute("answer") == "true";
-                if (data == true) {
-                    sninja.startSninja();
-                }
-
-
-            });
-        }
-
-    };
-
-    $(document).ready(function() {
-        sninja.init();
-    })
-
-})(jQuery)]]]]><![CDATA[></script><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:02:29</sys_created_on><sys_id>4e58c8c62bc0310043ce127c17da159a</sys_id><sys_mod_count>194</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:40</sys_updated_on></sys_ui_script><sys_app_file action="INSERT_OR_UPDATE"><customer_update>true</customer_update><publish_override/><replace_on_upgrade>false</replace_on_upgrade><restore/><sys_app/><sys_code>!!2.N/</sys_code><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:02:29</sys_created_on><sys_id>935888862bc0310043ce127c17da1510</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sninja</sys_name><sys_parent/><sys_path>!!2.N/</sys_path><sys_policy/><sys_source_deleted>false</sys_source_deleted><sys_source_id>4e58c8c62bc0310043ce127c17da159a</sys_source_id><sys_source_table>sys_ui_script</sys_source_table><sys_type>code</sys_type><sys_update_name>sys_ui_script_4e58c8c62bc0310043ce127c17da159a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:40</sys_updated_on></sys_app_file></record_update>]]></payload>
-<remote_update_set display_value="Snaug - SNinja">734ef4762b6135009728f70a89da153e</remote_update_set>
+	sninja = {
+		boundKey: (navigator.language == "en-GB"
+					&amp;&amp; typeof InstallTrigger == 'undefined')
+						? 223
+						: 192, // US / UK keyboards have different keycodes for ` in Chrome and FireFox
+		newTab: false,
+		searching: [{"name": "Open", "icon": "icon-all-apps"},
+					{"name": "Bookmarks", "icon": "icon-star-empty"},
+					{"name": "History", "icon": "icon-history"}],
+		visible: false,
+		suggestion: '',
+		bloodhound: {},
+		tabCount: 0,
+		mode: 'default',
+		search: {},
+		commandArray: [],
+		commandIndex: 0,
+		commands: {
+
+			"help": {
+				"context": "any",
+				"description": "Opens the help page.\n\nUsage: sninja.help",
+				"command": function() {
+					var link = location.origin + "/ui_page.do?sys_id=7fb87cbd4f1332001db78c318110c7b4";
+					window.open(link, "", "toolbar=no,menubar=no,personalbar=no,width=800,height=600,scrollbars=yes,resizable=yes");
+				}
+			},
+
+			"list": {
+				"context": "table",
+				"description": "Opens an unfiltered list of records for the specified table.\n\nUsage:\n[table name].list",
+				"command": function(item, newWindow) {
+					sninja.openWindow(item + "_list.do", newWindow);
+				}
+			},
+
+			"form": {
+				"context": "table",
+				"description": "Opens a new form for the specified table.\n\nUsage:\n[table name].form",
+				"command": function(item, newWindow) {
+					sninja.openWindow(item + ".do", newWindow);
+				}
+
+			},
+
+			"dict": {
+				"context": "table",
+				"description": "Opens the dictionary entry for the specified table.\n\nUsage:\n[table name].dict",
+				"command": function(item, newWindow) {
+					sninja.openWindow("sys_dictionary_list.do?sysparm_query=name=" + item, newWindow);
+				}
+			},
+
+			"filter": {
+				"context": "table",
+				"description": "Opens filter for the specified table.\n\nUsage:\n[table name].filter",
+				"command": function (item, newWindow) {
+					sninja.openWindow(item + "_list.do?sysparm_filter_only=true");
+				}
+			},
+
+			"recent": {
+				"context": "table",
+				"description": "Opens a list of items updated today for this table.\n\nUsage:\n[table name].recent",
+				"command": function(item, newWindow) {
+					sninja.openWindow(item + "_list.do?sysparm_query=sys_updated_onONToday@javascript:gs.daysAgoStart(0)@javascript:gs.daysAgoEnd(0)", newWindow);
+				}
+			},
+
+			"do": {
+				"context": "any",
+				"description": "Opens the .do for the specified table.\n\nUsage:\n[table name].do",
+				"command": function(item, newWindow) {
+					sninja.openWindow(item + ".do", newWindow);
+				}
+			},
+
+			"open": {
+				"context": "any",
+				"command": function(item, newWindow, suggestion) {
+					var link = "";
+
+					if (suggestion.type == "direct") {
+						link = suggestion.args;
+					} else if (suggestion.type == "list") {
+						link = suggestion.link + "_list.do?" + ["sysparm_query=" + suggestion.parms, "sysparm_view=" + suggestion.view].join("&amp;");
+					} else if (suggestion.type == "new") {
+						link = suggestion.link + ".do?sysparm_id=-1&amp;" + ["sysparm_query=" + suggestion.parms, "sysparm_view=" + suggestion.view].join("&amp;");
+					} else if (suggestion.type == "report") {
+						link = "sys_report_template.do?jvar_report_id=" + suggestion.report + "&amp;sysparm_from_list=true";
+					} else if (suggestion.type == "detail") {
+						link = suggestion.link + ".do?sysparm_query=" + suggestion.args + "&amp;sysparm_view=" + suggestion.view;
+					} else if (suggestion.type == "script") {
+						newWindow = true;
+						link = "sys.scripts.do?action=run_module&amp;sys_id=" + suggestion.id;
+					} else if (suggestion.type == "bookmark" ||
+							   suggestion.type == "history") {
+						link = suggestion.link;
+					}
+					
+					if (link !== "") {
+						sninja.openWindow(link, newWindow);
+					}
+				}
+			},
+
+			"br" : {
+				"context" : "any",
+				"description": "Opens the list of business rules for the specified table.\n\nUsage:\n[table name].br",
+				"command" : function(item, newWindow){
+					sninja.openWindow("sys_script_list.do?sysparm_query=collection=" + item, newWindow);
+				}
+			},
+
+			"cs" : {
+				"context" : "any",
+				"description": "Opens the list of client scripts for the specified table.\n\nUsage:\n[table name].cs",
+				"command" : function(item, newWindow){
+					sninja.openWindow("sys_client_script_list.do?sysparm_query=table=" + item, newWindow);
+				}
+			},
+
+			"acl" : {
+				"context" : "any",
+				"description": "Opens the list of ACLs for the specified table.\n\nUsage:\n[table name].acl",
+				"command" : function(item, newWindow){
+					sninja.openWindow("sys_security_acl_list.do?sysparm_query=nameSTARTSWITH" + item, newWindow);
+				}
+			},
+
+			"act" : {
+				"context" : "any",
+				"description": "Opens the list of UI actions for the specified table.\n\nUsage:\n[table name].act",
+				"command" : function(item, newWindow){
+					sninja.openWindow("sys_ui_action_list.do?sysparm_query=table=" + item, newWindow);
+				}
+			},
+
+			"pol" : {
+				"context" : "any",
+				"description": "Opens the list of UI policies for the specified table.\n\nUsage:\n[table name].pol",
+				"command" : function(item, newWindow){
+					sninja.openWindow("sys_ui_policy_list.do?sysparm_query=table=" + item, newWindow);
+				}
+			},      
+
+			"search" : {
+				"description": "Searches the specified table for a string.\n\nUsage:[table name][tab][search string][return]",
+				"command" : function(item){
+					sninja.openWindow(item[0] + "_list.do?sysparm_query=123TEXTQUERY321=" + item[2], false);
+				}                
+			}      
+		},
+
+		openWindow : function(link, newWindow){
+			if (!newWindow) {
+				newWindow = sninja.newTab;
+			}
+			if(!newWindow){
+				sninja.getMainWindow().location = link;
+			} else {
+				window.open(link);
+			}
+		},
+
+		getTable : function(){
+			var table = sninja.getMainWindow().location.pathname.toString().split('.do')[0];
+			table = table.replace("/","");
+			table = table.replace("_list","");
+
+			return table;
+		},
+
+		init: function() {
+			for (var key in sninja.commands) {
+				if (sninja.commands.hasOwnProperty(key)) {
+					sninja.commandArray.push(key);
+				}
+			}
+			this.getUserPermission();
+		},
+
+		startSninja: function() {
+			this.addSearch();
+			this.bindKeys();
+
+			var data = localStorage["searchData"];
+
+			if(!data){
+				this.getACValues();
+			} else {
+				sninja.search = JSON.parse(data);
+				console.log("sninja - Loaded AC Values From Cache");
+			}
+
+			// get history
+			var ga = new GlideAjax("SNinja");
+			ga.addParam('sysparm_name', 'getHistoryValues');
+			ga.getXML(function(response) {
+				var data = response.responseXML.documentElement.getAttribute("answer");
+				sninja.search.history = JSON.parse(data);
+				sninja.bloodhound.history = new Bloodhound({
+					datumTokenizer: function(d) {
+						return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
+					},
+					queryTokenizer: Bloodhound.tokenizers.whitespace,
+					local: sninja.search.history
+				});
+				sninja.bloodhound.history.initialize();
+				sninja.rebindTypeahead();
+				console.log("Loaded history");
+			});
+			sninja.initializeTypeahead();
+		},
+
+		getMainWindow: function() {
+			var mainWindow = getMainWindow();
+
+			if (mainWindow === undefined) {
+				return self;
+			} else {
+				return mainWindow;
+			}
+
+		},
+
+		bindKeys: function() {
+			$(document).on('keydown', function (event) {
+				if (event.which == sninja.boundKey) {
+					if (!sninja.visible) {
+						event.preventDefault();
+						event.stopPropagation();
+						sninja.newTab = false;
+						$("#sninja_new_tab_icon").css("display", "none");
+						$("#sninja_searching_icon").removeClass();
+						$("#sninja_searching_icon").addClass("icon icon-all-apps");
+						sninja.loadSearch();
+					} else if (!$("#sninja_search").is(":focus")) {
+						$("#sninja_search").focus();
+						event.preventDefault();
+						event.stopPropagation();
+					}
+				}
+			});
+			$("#sninja_search").on('keydown', this.processEvent);
+			$("#sninja_search").on('keyup', this.processEventUp);
+		},
+
+		processEventUp: function(event) {
+			if (sninja.visible) {
+				if ($("#sninja_search").is(":focus")) {
+					var command = $("#sninja_search").val().split(".");
+					if(command == "refresh") {
+						sninja.getACValues();
+						sninja.reset();
+					}
+					if (command.length == 2) {
+						if (sninja.commands[command[1]]) {
+							sninja.run_command(command);
+						}
+					}
+				}
+			}
+		},
+		
+		processEvent: function(event) {
+			if (!$("#sninja_search").is(":focus")) {
+				// this shouldn't be necessary
+				// but the workflow search field keeps acting like it's SNinja??
+				return;
+			}
+			var textVal = $("#sninja_search").val();
+			if (event.which == sninja.boundKey) {
+				event.preventDefault();
+				event.stopPropagation();
+				sninja.newTab = !sninja.newTab;
+				if (sninja.newTab) {
+					$("#sninja_new_tab_icon").css("display", "block");
+				} else {
+					$("#sninja_new_tab_icon").css("display", "none");
+				}
+			} else if (event.which == 27) { // escape
+				sninja.closeSearch();
+				event.preventDefault();
+				event.stopPropagation();
+				sninja.reset();
+			} else if (event.which == 13) { // enter
+				if ($("#sninja_search").is(":focus")) {
+					if(sninja.mode == 'search'){
+						textVal = textVal.replace("Search ","");
+						var terms = textVal.split(":");
+						command = [terms[0],'search',terms[1]];
+						sninja.run_command(command);
+						sninja.reset();
+					} else if (sninja.searching[0].name == "Bookmarks" || sninja.searching[0].name == "History") {
+						sninja.search_partial_match(textVal);
+						command = textVal.split(".");
+						var response = sninja.run_command(command);
+					} else if (sninja.suggestion || textVal == "help") {
+						command = textVal.split(".");
+						sninja.run_command(command);							
+					} else {
+						sninja.search_partial_match(textVal);
+					} 		
+				}
+			} else if (event.which == 190) {
+				var term = $("#sninja_search").val().split(".")[0];
+				sninja.search_for_command(term);
+			} else if (event.which == 9) { // tab
+				if (typeof sninja.suggestion == 'object' &amp;&amp;
+					sninja.tabCount == 1) {
+					$("#sninja_search").val("Search " + textVal + ": ");
+					sninja.tabCount = 2;
+					sninja.mode = 'search';
+				} else {
+					sninja.search_partial_match(textVal);
+				}
+				event.preventDefault();
+				event.stopPropagation();
+			} else if (event.which == 32 &amp;&amp; textVal.length == 0) { // space
+				event.preventDefault();
+				event.stopPropagation();
+				sninja.searching.push(sninja.searching.shift()); // cycle values				
+				$("#sninja_searching_icon").removeClass();
+				$("#sninja_searching_icon").addClass("icon " + sninja.searching[0].icon);
+				sninja.rebindTypeahead();
+			} else if (event.which == 192 || event.which == 8) {
+				sninja.tabCount = 0;
+				sninja.mode = 'default';
+				sninja.suggestion = '';
+			}
+		},
+
+		search_for_command: function(term) {
+			switch (sninja.searching[0].name) {
+				case "Open":
+					sninja.bloodhound.tables.get(term, function(suggestions) {
+						suggestions.each(function(suggestion) {
+							if (suggestion.value == term) {
+								sninja.suggestion = suggestion;
+							}
+						});
+					});
+
+					sninja.bloodhound.modules.get(term, function(suggestions) {
+						suggestions.each(function(suggestion) {
+							if (suggestion.value == term) {
+								sninja.suggestion = suggestion;
+							}
+						});
+					});
+					break;
+
+				case "Bookmarks":
+					sninja.bloodhound.bookmarks.get(term, function(suggestions) {
+						suggestions.each(function(suggestion) {
+							if (suggestion.value == term) {
+								sninja.suggestion = suggestion;
+							}
+						});
+					});
+					break;
+
+				case "History":
+					sninja.bloodhound.history.get(term, function(suggestions) {
+						suggestions.each(function(suggestion) {
+							if (suggestion.value == term) {
+								sninja.suggestion = suggestion;
+							}
+						});
+					});
+			}
+			return false;
+		},
+
+		search_partial_match: function(term) {
+			sninja.tabCount = 1;			
+			switch (sninja.searching[0].name) {
+				case "Open":
+					var foundSomething = false;
+					sninja.bloodhound.tables.get(term, function(suggestions) {
+						if (suggestions.length !== 0) {
+							$("#sninja_search").typeahead('val', suggestions[0].value);
+							sninja.suggestion = suggestions[0];
+							foundSomething = true;
+						}
+					});
+					
+					if (!foundSomething) {
+						sninja.bloodhound.modules.get(term, function(suggestions) {
+							if (suggestions.length !== 0) {
+								$("#sninja_search").typeahead('val', suggestions[0].value);
+								sninja.suggestion = suggestions[0];
+							}
+						});
+					}
+					
+					break;
+
+				case "Bookmarks":
+					sninja.bloodhound.bookmarks.get(term, function(suggestions) {
+						if (suggestions.length !== 0) {
+							$("#sninja_search").typeahead('val', suggestions[0].value);
+							sninja.suggestion = suggestions[0];
+						}
+					});
+					break;
+
+				case "History":
+					sninja.bloodhound.history.get(term, function(suggestions) {
+						if (suggestions.length !== 0) {
+							$("#sninja_search").typeahead('val', suggestions[0].value);
+							sninja.suggestion = suggestions[0];
+						}
+					});
+					break;
+			}
+		},
+
+		run_command: function(command) {
+			if (command.length == 1) command.push("open");
+			if( command[0] == "current" ) command[0] = sninja.getTable();
+
+			if (sninja.suggestion == '') sninja.suggestion = {
+				value: command[0],
+				type: "table"
+			};
+
+			var commandName = command[1].toLowerCase();
+			if(commandName == 'search'){
+				sninja.commands[commandName].command(command);
+			} else if (command[0] == "help") {
+				sninja.commands["help"].command();
+			} else if (sninja.commands[commandName].context == sninja.suggestion.type || sninja.commands[commandName].context == "any") {
+				sninja.commands[commandName].command(sninja.suggestion.value, command[1] === command[1].toUpperCase(), sninja.suggestion);
+			}
+			sninja.closeSearch();
+		},
+
+		reset: function() {
+			$("#sninja_search").typeahead('val', '');
+			sninja.searching = [{"name": "Open", "icon": "icon-all-apps"},
+					{"name": "Bookmarks", "icon": "icon-star-empty"},
+					{"name": "History", "icon": "icon-history"}];
+			sninja.suggestion = "";
+			sninja.tabCount = 0;
+			sninja.mode = 'default';
+			sninja.commandIndex = 0;            
+		},
+
+		closeSearch: function() {
+			sninja.reset();
+			sninja.visible = false;
+			$('.sninja').fadeOut(100);
+		},
+
+		loadSearch: function() {
+			sninja.suggestion = '';
+			$("#sninja_search").typeahead('val', '');			
+			$("#sninja_search").attr("placeholder", "Type 'sninja.help' for help");
+			sninja.visible = true;
+
+			$('.sninja').fadeIn(50, function() {
+				$("#sninja_search").focus();
+			});
+		},
+
+		addSearch: function() {
+			var container = $("&lt;div&gt;&lt;/div&gt;")
+			.addClass("sninja")
+			.addClass("sninja-search-container")
+			.appendTo("body");
+			$("&lt;span&gt;&lt;/span&gt;")
+				.attr("id", "sninja_searching_icon")
+				.addClass("icon")
+				.addClass("icon-all-apps")
+				.css({"font-size": "30px",
+					  "display": "block",
+					  "float": "right"})
+				.appendTo(container);
+			$("&lt;input&gt;&lt;/input&gt;")
+				.attr("id", "sninja_search")
+				.addClass("sninja-search-box")
+				.addClass("typeahead")
+				.appendTo(container);
+			$("&lt;span&gt;&lt;/span&gt;")
+				.attr("id", "sninja_new_tab_icon")
+				.addClass("icon")
+				.addClass("icon-add-circle")
+				.css({"font-size": "30px",
+					  "display": "none",
+					  "float": "right"})
+				.appendTo(container);
+		},
+
+		initializeTypeahead: function() {
+			sninja.bloodhound.tables = new Bloodhound({
+				datumTokenizer: function(d) {
+					return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				sorter: function(a, b) {
+
+					if (a.value.length &lt; b.value.length) {
+						return -1;
+					}
+					if (a.value.length &gt; b.value.length) {
+						return 1;
+					}
+
+					return 0;
+				},
+				local: sninja.search.tables
+			});
+
+			sninja.bloodhound.modules = new Bloodhound({
+				datumTokenizer: function(d) {
+					return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				local: sninja.search.modules
+			});
+
+			sninja.bloodhound.bookmarks = new Bloodhound({
+				datumTokenizer: function(d) {
+					return Bloodhound.tokenizers.whitespace(d.tokens.join(' '));
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				local: sninja.search.bookmarks
+			});
+
+			sninja.bloodhound.tables.initialize();
+			sninja.bloodhound.modules.initialize();
+			sninja.bloodhound.bookmarks.initialize();
+
+			$('#sninja_search').typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}, {
+				name: 'tables',
+				displayKey: 'value',
+				source: sninja.bloodhound.tables.ttAdapter(),
+				templates: {
+					suggestion: Handlebars.compile('&lt;p&gt;&lt;strong&gt;{{value}}&lt;/strong&gt;&lt;/p&gt;')
+				}
+			}, {
+				name: 'modules',
+				displayKey: 'value',
+				source: sninja.bloodhound.modules.ttAdapter(),
+				templates: {
+					suggestion: Handlebars.compile('&lt;p&gt;&lt;strong&gt;{{title}}&lt;/strong&gt; ({{section}})&lt;/p&gt;')
+				}
+			}).bind('typeahead:selected', function(obj, datum, name) {
+				sninja.suggestion = datum;
+			}).bind('typeahead:autocompleted', function(obj, datum, name) {
+				sninja.suggestion = datum;
+			}).bind('typeahead:cursorchanged', function(obj, datum, name) {
+				sninja.suggestion = datum;
+			});			
+		},
+
+		rebindTypeahead: function () {
+			$("#sninja_search").attr("placeholder", sninja.searching[0].name);
+			$("#sninja_search").typeahead("destroy");
+			switch (sninja.searching[0].name) {
+				case "Open":
+					$('#sninja_search').typeahead({
+						hint: true,
+						highlight: true,
+						minLength: 1
+					}, {
+						name: 'tables',
+						displayKey: 'value',
+						source: sninja.bloodhound.tables.ttAdapter(),
+						templates: {
+							suggestion: Handlebars.compile('&lt;p&gt;&lt;strong&gt;{{value}}&lt;/strong&gt;&lt;/p&gt;')
+						}
+					}, {
+						name: 'modules',
+						displayKey: 'value',
+						source: sninja.bloodhound.modules.ttAdapter(),
+						templates: {
+							suggestion: Handlebars.compile('&lt;p&gt;&lt;strong&gt;{{title}}&lt;/strong&gt; ({{section}})&lt;/p&gt;')
+						}
+					});
+					break;
+				case "Bookmarks":
+					$("#sninja_search").typeahead({
+						hint: true,
+						highlight: true,
+						minLength: 1
+					}, {
+						name: 'bookmarks',
+						displayKey: 'value',
+						source: sninja.bloodhound.bookmarks.ttAdapter(),
+						templates: {
+							suggestion: Handlebars.compile('&lt;p&gt;&lt;strong&gt;{{value}}&lt;/strong&gt;&lt;/p&gt;')}
+					});
+					break;
+				case "History":
+					if (typeof sninja.bloodhound.history != "undefined") {
+						$("#sninja_search").typeahead({
+							hint: true,
+							highlight: true,
+							minLength: 1
+						}, {
+							name: 'history',
+							displayKey: 'description',
+							source: sninja.bloodhound.history.ttAdapter(),
+							templates: {
+								suggestion: Handlebars.compile('&lt;p&gt;&lt;strong&gt;{{title}}&lt;/strong&gt; ({{description}})&lt;/p&gt;')}
+						});
+					} else {
+						$("#sninja_search").attr("placeholder", "History - loading...");
+					}
+					break;
+			}
+			// reloading typeahead causes it to lose focus - known bug
+			setTimeout(function () {
+				$("#sninja_search").focus();
+			}, 0);
+		},
+
+		getACValues: function() {
+			var ga = new GlideAjax("SNinja");
+			ga.addParam('sysparm_name', 'getACValues');
+			console.log("sninja - Loading AC Values");
+			ga.getXML(function(response) {
+				var data = response.responseXML.documentElement.getAttribute("answer");
+				localStorage["searchData"] = data;
+				sninja.search = JSON.parse(data);
+			});
+		},
+
+		getUserPermission: function() {
+			var ga = new GlideAjax("SNinja");
+			ga.addParam('sysparm_name', 'getUserPermission');
+
+			ga.getXML(function(response) {
+				var data = response.responseXML.documentElement.getAttribute("answer") == "true";
+				if (data == true) {
+					sninja.startSninja();
+				}
+			});
+		}
+	};
+
+	$(document).ready(function() {
+		sninja.init();
+	});
+
+})(jQuery);]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 03:02:29&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;4e58c8c62bc0310043ce127c17da159a&lt;/sys_id&gt;&lt;sys_mod_count&gt;390&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_4e58c8c62bc0310043ce127c17da159a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;Adam.Foster2@cbre.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-07-25 16:35:58&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Snaug - SNinja - Final">32c81448dbd04b041f0dff9aae9619d6</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2015-01-15 04:27:47</sys_created_on>
-<sys_id>045ef4762b6135009728f70a89da153e</sys_id>
+<sys_created_by>Adam.Foster2@cbre.com</sys_created_by>
+<sys_created_on>2017-07-26 14:17:52</sys_created_on>
+<sys_id>3ac81448dbd04b041f0dff9aae9619d7</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2015-01-15 04:27:47</sys_updated_on>
+<sys_updated_by>Adam.Foster2@cbre.com</sys_updated_by>
+<sys_updated_on>2017-07-26 14:17:52</sys_updated_on>
 <table/>
 <target_name>sninja</target_name>
 <type>UI Script</type>
@@ -497,64 +708,194 @@
 </sys_update_xml>
 <sys_update_xml action="INSERT_OR_UPDATE">
 <action>INSERT_OR_UPDATE</action>
-<application display_value=""/>
+<application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
-<name>sys_ui_script_b56248862bc0310043ce127c17da15a3</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script"><sys_ui_script action="INSERT_OR_UPDATE"><active>true</active><description/><global>true</global><name>sninja_loader</name><script><![CDATA[if (self === top) {
+<name>sys_ui_page_7fb87cbd4f1332001db78c318110c7b4</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[var app = angular.module('sninjaHelpApp', []);
+app.controller('sninjaHelpCtrl', function($scope, $http) {
+	$scope.getSninja = function () {
+		if (typeof sninja == "undefined") {
+			setTimeout($scope.getSninja, 100);
+		} else {
+			$scope.sninjaCommands = ["name", "Loading..."];
+			angular.forEach(sninja.commands, function(value, key) {
+				if (typeof value.description != "undefined") {
+					value.name = key;
+					value.command = value.command.toString();				
+					this.push(value);
+				}
+			}, $scope.sninjaCommands);
+			//$scope.sninjaCommands.shift();
+		}		
+	};
 
-    console.log('Sninja Starting Loading');
-    [
-      '958988c62bc0310043ce127c17da15df.cssdbx',
-      'https://fonts.googleapis.com/css?family=Open+Sans'
-    ].forEach(function(src) {
-      var link = document.createElement('link');
-      link.href = src;
-      link.rel = 'stylesheet';
-      link.type = 'text/css'
-      document.head.appendChild(link);
-    });
-
-    [
-      'jQuery-1.11.1.min.jsdbx',
-      '//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js',
-      '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js',
-      'sninja.jsdbx'
-    ].forEach(function(src) {
-      var script = document.createElement('script');
-      script.src = src;
-      script.async = false;
-      document.head.appendChild(script);
-    });
-
-    setTimeout(function(){
-        console.log('Sninja Finished Loading');
-    },1);
-
-}
- else {
-
-   window.onkeydown = top.sninja.processEvent;
-
-}]]]]><![CDATA[></script><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 02:37:07</sys_created_on><sys_id>b56248862bc0310043ce127c17da15a3</sys_id><sys_mod_count>54</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:50</sys_updated_on></sys_ui_script><sys_app_file action="INSERT_OR_UPDATE"><customer_update>true</customer_update><publish_override/><replace_on_upgrade>false</replace_on_upgrade><restore/><sys_app/><sys_code>!!2.M/</sys_code><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 02:37:07</sys_created_on><sys_id>ff8240862bc0310043ce127c17da157c</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sninja_loader</sys_name><sys_parent/><sys_path>!!2.M/</sys_path><sys_policy/><sys_source_deleted>false</sys_source_deleted><sys_source_id>b56248862bc0310043ce127c17da15a3</sys_source_id><sys_source_table>sys_ui_script</sys_source_table><sys_type>code</sys_type><sys_update_name>sys_ui_script_b56248862bc0310043ce127c17da15a3</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:50</sys_updated_on></sys_app_file></record_update>]]></payload>
-<remote_update_set display_value="Snaug - SNinja">734ef4762b6135009728f70a89da153e</remote_update_set>
+	$scope.getSninja();
+});]]&gt;&lt;/client_script&gt;&lt;description&gt;List commands for SNinja&lt;/description&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint/&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"&gt;&lt;/script&gt;
+	&lt;div ng-app="sninjaHelpApp" ng-controller="sninjaHelpCtrl"&gt;
+		&lt;h1&gt;SNinja Help&lt;/h1&gt;
+		&lt;h2&gt;How to use SNinja&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;To use SNinja, you need to create a user preference for each person using it with the name sninja.run. The type should be true | false, and the value should be true. This will take effect next time the user logs in.&lt;/li&gt;
+			&lt;li&gt;To open the search, press the backtick ( ` ) key on your keyboard. This is the one at the top-left, beneath Escape.&lt;/li&gt;
+			&lt;li&gt;To cycle between searching the navigator, your bookmarks and your history, press Space when there's nothing in the search field. The icon above the search will change to reflect what you're searching. Your history takes a few seconds to load, so if you cycle to the history and the placeholder says "History - loading..." you'll need to wait a moment for it to finish.&lt;/li&gt;
+			&lt;li&gt;To cycle between opening your search in the same window or a new window/tab, press backtick again. A + symbol will appear beneath the search when you're opening the search in a new window/tab.&lt;/li&gt;
+			&lt;li&gt;As you type, SNinja will suggest possible matches. If you press Tab, the cursor will move to the end of the suggestion. If you press Tab again, you'll get the option to search within your selection. If you press Enter and the current suggestion is something that can be opened (for example, a bookmark or a history item), SNinja will immediately open it. If it can't be opened, the cursor will move to the end of the suggestion.&lt;/li&gt;
+			&lt;li&gt;If you type the name of a table, you need to add a . and a command. Search below for possible commands.&lt;/li&gt;
+			&lt;li&gt;SNinja was made by$[SP]&lt;a href="https://github.com/salcosta"&gt;salcosta&lt;/a&gt;, and all the useful bits that work are due to him. I just added a bunch of minor features (and all the bugs) - Adam&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;h2&gt;Commands&lt;/h2&gt;
+		&lt;input ng-model="command_search_box" placeholder="Type to search" autofocus="true" id="search_box"&gt;&lt;/input&gt;
+		&lt;br /&gt;
+		&lt;div class="panel-group" id="accordion" ng-repeat="c in sninjaCommands | filter: { name: command_search_box} | orderBy : 'name'"&gt;
+			&lt;div class="panel panel-default"&gt;
+				&lt;div class="panel-heading"&gt;
+					&lt;h3 class="panel-title"&gt;
+						&lt;a data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}"&gt;
+							&lt;b&gt;{{ c.name }}&lt;/b&gt;
+						&lt;/a&gt;
+					&lt;/h3&gt;
+					&lt;div id="collapse{{$index}}" class="panel-collapse accordion-body collapse"&gt;
+						&lt;p ng-if="c.context"&gt;&lt;b&gt;Context:$[SP]&lt;/b&gt; {{ c.context }}&lt;/p&gt;
+						&lt;p&gt;{{ c.description }}&lt;/p&gt;
+						&lt;!-- &lt;pre&gt;{{ c.command }}&lt;/pre&gt; --&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;a href="http://snaug.com/?p=96"&gt;SNAUG&lt;/a&gt;&lt;br /&gt;
+	&lt;a href="https://github.com/salcosta/sninja"&gt;GitHub&lt;/a&gt;
+&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;sninja_help&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-06-12 10:06:57&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;7fb87cbd4f1332001db78c318110c7b4&lt;/sys_id&gt;&lt;sys_mod_count&gt;71&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja_help&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_7fb87cbd4f1332001db78c318110c7b4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;Adam.Foster2@cbre.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-07-26 14:17:40&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Snaug - SNinja - Final">32c81448dbd04b041f0dff9aae9619d6</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2015-01-15 04:27:47</sys_created_on>
-<sys_id>445ef4762b6135009728f70a89da153e</sys_id>
+<sys_created_by>Adam.Foster2@cbre.com</sys_created_by>
+<sys_created_on>2017-07-26 14:17:52</sys_created_on>
+<sys_id>76c81448dbd04b041f0dff9aae9619d7</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2015-01-15 04:27:47</sys_updated_on>
+<sys_updated_by>Adam.Foster2@cbre.com</sys_updated_by>
+<sys_updated_on>2017-07-26 14:17:52</sys_updated_on>
 <table/>
-<target_name>sninja_loader</target_name>
-<type>UI Script</type>
+<target_name>sninja_help</target_name>
+<type>UI Page</type>
 <update_domain>global</update_domain>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
 <sys_update_xml action="INSERT_OR_UPDATE">
 <action>INSERT_OR_UPDATE</action>
-<application display_value=""/>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_include_f9099d6c2b5831009728f70a89da1546</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.SNinja&lt;/api_name&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;SNinja&lt;/name&gt;&lt;script&gt;&lt;![CDATA[gs.include("JSON");
+var SNinja = Class.create();
+
+SNinja.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+	getUserPermission : function(){
+		return gs.getPreference("sninja.run", false);
+	},
+
+	getACValues : function(){
+		var tableRec = new GlideRecord('sys_documentation');
+		tableRec.addQuery('element=NULL^nameNOT LIKEts_c^language=en^nameNOT LIKE0');
+		tableRec.query();
+		var searches = {
+			tables: [],
+			modules: [],
+			bookmarks: []
+		};
+
+		while(tableRec.next()) {
+			searches.tables.push({
+				value : tableRec.name.toString(),
+				section : 'Tables',
+				type : 'table',
+				tokens : [tableRec.name.toString(), tableRec.label.toString()]
+			});
+		}
+
+		var moduleRec = new GlideRecord('sys_app_module');
+		moduleRec.addEncodedQuery(
+			'link_typeINLIST,NEW,REPORT,SCRIPT,DETAIL,DIRECT^active=true'
+		);
+		moduleRec.query();
+
+		while(moduleRec.next()) {
+			searches.modules.push({
+				value : moduleRec.title.getDisplayValue().toString() + " (" + moduleRec.application.getDisplayValue() + ")",
+				title : moduleRec.title.getDisplayValue().toString(),
+				section : moduleRec.application.getDisplayValue(),
+				type : moduleRec.link_type.toString().toLowerCase(),
+				tokens : [moduleRec.title.getDisplayValue()],
+				link : moduleRec.name.toString(),
+				id : moduleRec.sys_id.toString(),
+				parms : moduleRec.filter.toString(),
+				view : moduleRec.view_name.toString(),
+				report : moduleRec.report.toString(),
+				args : moduleRec.query.toString()
+			});
+		}
+
+		var bookmarkRec = new GlideRecord("sys_ui_bookmark");
+		bookmarkRec.addQuery("user", gs.getUserID());
+		bookmarkRec.orderBy("order");
+		bookmarkRec.query();
+
+		while (bookmarkRec.next()) {
+			searches.bookmarks.push({
+				link: bookmarkRec.url.toString(),
+				tokens: [bookmarkRec.title.toString()],
+				type: 'bookmark',
+				value: bookmarkRec.title.toString().replace(/\./g, " ")
+			});
+		}
+
+		return new JSON().encode(searches);
+	},
+
+	getHistoryValues: function () {
+		var searches = [];
+		var historyRec = new GlideRecord("sys_ui_navigator_history");
+		historyRec.addQuery("sys_created_by", gs.getUser().name);
+		historyRec.orderByDesc("sys_created_on");
+		historyRec.setLimit(20);
+		historyRec.query();
+		var title;
+		while (historyRec.next()) {
+			searches.push({
+				link: historyRec.url.toString(),
+				tokens: [historyRec.title.toString(), historyRec.description.toString()],
+				type: 'history',
+				title: historyRec.title.toString(),
+				description: historyRec.description.toString().replace(/\./g, " ")
+			});
+		}
+		
+		return new JSON().encode(searches);
+	}
+
+});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-11-07 03:19:50&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;f9099d6c2b5831009728f70a89da1546&lt;/sys_id&gt;&lt;sys_mod_count&gt;38&lt;/sys_mod_count&gt;&lt;sys_name&gt;SNinja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_f9099d6c2b5831009728f70a89da1546&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;Adam.Foster2@cbre.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-06-20 11:51:42&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Snaug - SNinja - Final">32c81448dbd04b041f0dff9aae9619d6</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>Adam.Foster2@cbre.com</sys_created_by>
+<sys_created_on>2017-07-26 14:17:52</sys_created_on>
+<sys_id>b2c81448dbd04b041f0dff9aae9619d7</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>Adam.Foster2@cbre.com</sys_updated_by>
+<sys_updated_on>2017-07-26 14:17:52</sys_updated_on>
+<table/>
+<target_name>SNinja</target_name>
+<type>Script Include</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
 <name>content_css_958988c62bc0310043ce127c17da15df</name>
@@ -641,14 +982,14 @@ span.twitter-typeahead {&#13;
 .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {&#13;
   top: 28px !important;&#13;
 }</style><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:07:36</sys_created_on><sys_id>958988c62bc0310043ce127c17da15df</sys_id><sys_mod_count>27</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:23</sys_updated_on><type>local</type><url/></content_css><sys_app_file action="INSERT_OR_UPDATE"><customer_update>true</customer_update><publish_override/><replace_on_upgrade>false</replace_on_upgrade><restore/><sys_app/><sys_code>!!2.P/</sys_code><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:07:36</sys_created_on><sys_id>a68988c62bc0310043ce127c17da15e1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sninja</sys_name><sys_parent/><sys_path>!!2.P/</sys_path><sys_policy/><sys_source_deleted>false</sys_source_deleted><sys_source_id>958988c62bc0310043ce127c17da15df</sys_source_id><sys_source_table>content_css</sys_source_table><sys_type/><sys_update_name>content_css_958988c62bc0310043ce127c17da15df</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:23</sys_updated_on></sys_app_file></record_update>]]></payload>
-<remote_update_set display_value="Snaug - SNinja">734ef4762b6135009728f70a89da153e</remote_update_set>
+<remote_update_set display_value="Snaug - SNinja - Final">32c81448dbd04b041f0dff9aae9619d6</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2015-01-15 04:27:47</sys_created_on>
-<sys_id>b34ef4762b6135009728f70a89da153e</sys_id>
+<sys_created_by>Adam.Foster2@cbre.com</sys_created_by>
+<sys_created_on>2017-07-26 14:17:52</sys_created_on>
+<sys_id>fac81448dbd04b041f0dff9aae9619d6</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2015-01-15 04:27:47</sys_updated_on>
+<sys_updated_by>Adam.Foster2@cbre.com</sys_updated_by>
+<sys_updated_on>2017-07-26 14:17:52</sys_updated_on>
 <table/>
 <target_name>sninja</target_name>
 <type>Style Sheet</type>
@@ -658,72 +999,91 @@ span.twitter-typeahead {&#13;
 </sys_update_xml>
 <sys_update_xml action="INSERT_OR_UPDATE">
 <action>INSERT_OR_UPDATE</action>
-<application display_value=""/>
+<application display_value="Global">global</application>
 <category>customer</category>
 <comments/>
-<name>sys_script_include_f9099d6c2b5831009728f70a89da1546</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include"><sys_script_include action="INSERT_OR_UPDATE"><active>true</active><client_callable>true</client_callable><description/><name>SNinja</name><script><![CDATA[gs.include("JSON");
-var SNinja = Class.create();
+<name>sys_ui_script_b56248862bc0310043ce127c17da15a3</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_script"&gt;&lt;sys_ui_script action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;description/&gt;&lt;global&gt;true&lt;/global&gt;&lt;name&gt;sninja_loader&lt;/name&gt;&lt;script&gt;&lt;![CDATA[(function () {
+	if (typeof GlideAjax != "undefined") {
+		// only show in gsft_main
+		console.log('Sninja Starting Loading');
+		[
+			'958988c62bc0310043ce127c17da15df.cssdbx', // + "?ts=" + new Date().getTime(),
+			'https://fonts.googleapis.com/css?family=Open+Sans'
+		].forEach(function(src) {
+			var link = document.createElement('link');
+			link.href = src;
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			document.head.appendChild(link);
+		});
 
-SNinja.prototype = Object.extendsObject(AbstractAjaxProcessor, {
-	getUserPermission : function(){
-		return gs.getPreference("sninja.run", false);
-	},
+		[
+			'//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js',
+			//'//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.js',
+			'//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js',
+			'sninja.jsdbx' // + "?ts=" + new Date().getTime() // add timestamp to avoid caching issues
+		].forEach(function(src) {
+			var script = document.createElement('script');
+			script.src = src;
+			script.async = false;
+			script.type = 'text/javascript';
+			document.head.appendChild(script);
+		});
 
-	getACValues : function(){
-		var tableRec = new GlideRecord('sys_documentation');
-		tableRec.addQuery('element=NULL^nameNOT LIKEts_c^language=en^nameNOT LIKE0');
-		tableRec.query();
-		var searches = {
-			tables :[],
-			modules : []
-		};
+		setTimeout(function(){
+			console.log('Sninja Finished Loading');
+		},1);
 
-		while(tableRec.next()){
-			searches.tables.push({
-				value : tableRec.name.toString(),
-				section : 'Tables',
-				type : 'table',
-				tokens : [tableRec.name.toString(), tableRec.label.toString()]
-			})
+		if (top.sninja)
+			top.window.onkeydown = top.sninja.processEvent;
+
+		// navigator
+		if (typeof this.GlideAjax != "undefined") {
+			this.parent.window.addEventListener(
+				"keydown",
+				function (e) {
+					var boundKey = (navigator.language == "en-GB"
+									&amp;&amp; typeof InstallTrigger == 'undefined')
+										? 223
+										: 192;
+					if (e.which == boundKey) {
+						sninja.loadSearch();						
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				},
+				false
+			);
+			this.window.addEventListener(
+				"keydown",
+				function (e) {
+					var boundKey = (navigator.language == "en-GB"
+									&amp;&amp; typeof InstallTrigger == 'undefined')
+										? 223
+										: 192;
+					if (e.which == boundKey &amp;&amp; this.sninja.visible == false) {
+						sninja.loadSearch();						
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				},
+				false
+			);
 		}
-
-		var moduleRec = new GlideRecord('sys_app_module');
-		moduleRec.addQuery('link_typeINLIST,NEW,REPORT,SCRIPT,DETAIL,DIRECT^active=true');
-		moduleRec.query();
-
-		while(moduleRec.next()){
-			searches.modules.push({
-				value : moduleRec.title.getDisplayValue().toString() + " (" + moduleRec.application.getDisplayValue() + ")",
-				title : moduleRec.title.getDisplayValue().toString(),
-				section : moduleRec.application.getDisplayValue(),
-				type : moduleRec.link_type.toString().toLowerCase(),
-				tokens : [ moduleRec.title.getDisplayValue()],
-				link : moduleRec.name.toString(),
-				id : moduleRec.sys_id.toString(),
-				parms : moduleRec.filter.toString(),
-				view : moduleRec.view_name.toString(),
-				report : moduleRec.report.toString(),
-				args : moduleRec.query.toString()
-			});
-
-		}
-
-		return new JSON().encode(searches);
 	}
-
-});]]]]><![CDATA[></script><sys_created_by>admin</sys_created_by><sys_created_on>2014-11-07 03:19:50</sys_created_on><sys_id>f9099d6c2b5831009728f70a89da1546</sys_id><sys_mod_count>23</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:27:24</sys_updated_on></sys_script_include><sys_app_file action="INSERT_OR_UPDATE"><customer_update>true</customer_update><publish_override/><replace_on_upgrade>false</replace_on_upgrade><restore/><sys_app/><sys_code>!!23H/</sys_code><sys_created_by>admin</sys_created_by><sys_created_on>2014-11-07 03:19:50</sys_created_on><sys_id>73099d6c2b5831009728f70a89da154b</sys_id><sys_mod_count>0</sys_mod_count><sys_name>SNinja</sys_name><sys_parent/><sys_path>!!23H/</sys_path><sys_policy/><sys_source_deleted>false</sys_source_deleted><sys_source_id>f9099d6c2b5831009728f70a89da1546</sys_source_id><sys_source_table>sys_script_include</sys_source_table><sys_type>code</sys_type><sys_update_name>sys_script_include_f9099d6c2b5831009728f70a89da1546</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:27:24</sys_updated_on></sys_app_file></record_update>]]></payload>
-<remote_update_set display_value="Snaug - SNinja">734ef4762b6135009728f70a89da153e</remote_update_set>
+})();]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 02:37:07&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;b56248862bc0310043ce127c17da15a3&lt;/sys_id&gt;&lt;sys_mod_count&gt;102&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja_loader&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_b56248862bc0310043ce127c17da15a3&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;Adam.Foster2@cbre.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-07-04 10:05:15&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Snaug - SNinja - Final">32c81448dbd04b041f0dff9aae9619d6</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2015-01-15 04:27:47</sys_created_on>
-<sys_id>c05ef4762b6135009728f70a89da153e</sys_id>
+<sys_created_by>Adam.Foster2@cbre.com</sys_created_by>
+<sys_created_on>2017-07-26 14:17:52</sys_created_on>
+<sys_id>fac81448dbd04b041f0dff9aae9619d7</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2015-01-15 04:27:47</sys_updated_on>
+<sys_updated_by>Adam.Foster2@cbre.com</sys_updated_by>
+<sys_updated_on>2017-07-26 14:17:52</sys_updated_on>
 <table/>
-<target_name>SNinja</target_name>
-<type>Script Include</type>
+<target_name>sninja_loader</target_name>
+<type>UI Script</type>
 <update_domain>global</update_domain>
 <update_set display_value=""/>
 <view/>
