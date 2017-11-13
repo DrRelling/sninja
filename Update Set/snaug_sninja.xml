@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<unload unload_date="2017-09-01 09:35:41">
+<unload unload_date="2017-11-13 11:40:09">
 <sys_remote_update_set action="INSERT_OR_UPDATE">
 <application display_value=""/>
 <application_name/>
@@ -10,23 +10,23 @@
 <deleted/>
 <description/>
 <inserted/>
-<name>Snaug - SNinja - Final</name>
+<name>snaug_sninja</name>
 <new_count/>
 <origin_sys_id/>
 <parent display_value=""/>
 <release_date/>
 <remote_base_update_set display_value=""/>
 <remote_parent_id/>
-<remote_sys_id>00021af6dbfc03001f0dff9aae96191e</remote_sys_id>
+<remote_sys_id>907cfddfdb524780c1ce776baf9619c8</remote_sys_id>
 <state>loaded</state>
 <summary/>
 <sys_class_name>sys_remote_update_set</sys_class_name>
 <sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>8e0bfdfbdb384780fdbb74b5ae9619dd</sys_id>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>01935e5fdbd24780c1ce776baf9619ea</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
 <update_set display_value=""/>
 <update_source display_value=""/>
 <updated/>
@@ -691,416 +691,18 @@
 
 })(jQuery);]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 03:02:29&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;4e58c8c62bc0310043ce127c17da159a&lt;/sys_id&gt;&lt;sys_mod_count&gt;386&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_4e58c8c62bc0310043ce127c17da159a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-07-04 10:41:06&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
 <payload_hash/>
-<remote_update_set display_value="Snaug - SNinja - Final">8e0bfdfbdb384780fdbb74b5ae9619dd</remote_update_set>
+<remote_update_set display_value="snaug_sninja">01935e5fdbd24780c1ce776baf9619ea</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>0a0bfdfbdb384780fdbb74b5ae9619df</sys_id>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>0d935e5fdbd24780c1ce776baf9619eb</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>15d174e8c500000000</sys_recorded_at>
+<sys_recorded_at>15fb4d166580000000</sys_recorded_at>
 <sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
 <table/>
 <target_name>sninja</target_name>
 <type>UI Script</type>
-<update_domain>global</update_domain>
-<update_guid/>
-<update_guid_history/>
-<update_set display_value=""/>
-<view/>
-</sys_update_xml>
-<sys_update_xml action="INSERT_OR_UPDATE">
-<action>INSERT_OR_UPDATE</action>
-<application display_value="Global">global</application>
-<category>retrieved</category>
-<comments/>
-<name>sys_ui_page_7fb87cbd4f1332001db78c318110c7b4</name>
-<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[var app = angular.module('sninjaHelpApp', []);
-app.controller('sninjaHelpCtrl', function($scope, $http) {
-	$scope.getSninja = function () {
-		if (typeof sninja == "undefined") {
-			setTimeout($scope.getSninja, 100);
-		} else {
-			$scope.sninjaCommands = ["name", "Loading..."];
-			angular.forEach(sninja.commands, function(value, key) {
-				if (typeof value.description != "undefined") {
-					value.name = key;
-					value.command = value.command.toString();				
-					this.push(value);
-				}
-			}, $scope.sninjaCommands);
-			//$scope.sninjaCommands.shift();
-		}		
-	};
-
-	$scope.getSninja();
-});]]&gt;&lt;/client_script&gt;&lt;description&gt;List commands for SNinja&lt;/description&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint/&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
-&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
-	&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"&gt;&lt;/script&gt;
-	&lt;div ng-app="sninjaHelpApp" ng-controller="sninjaHelpCtrl"&gt;
-		&lt;h1&gt;SNinja Help&lt;/h1&gt;
-		&lt;h2&gt;How to use SNinja&lt;/h2&gt;
-		&lt;ul&gt;
-			&lt;li&gt;To use SNinja, you need to create a user preference for each person using it with the name sninja.run. The type should be true | false, and the value should be true. This will take effect next time the user logs in.&lt;/li&gt;
-			&lt;li&gt;To open the search, press the backtick ( ` ) key on your keyboard. This is the one at the top-left, beneath Escape.&lt;/li&gt;
-			&lt;li&gt;To cycle between searching the navigator, your bookmarks and your history, press Space when there's nothing in the search field. The icon above the search will change to reflect what you're searching. Your history takes a few seconds to load, so if you cycle to the history and the placeholder says "History - loading..." you'll need to wait a moment for it to finish.&lt;/li&gt;
-			&lt;li&gt;To cycle between opening your search in the same window or a new window/tab, press backtick again. A + symbol will appear beneath the search when you're opening the search in a new window/tab.&lt;/li&gt;
-			&lt;li&gt;As you type, SNinja will suggest possible matches. If you press Tab, the cursor will move to the end of the suggestion. If you press Tab again, you'll get the option to search within your selection. If you press Enter and the current suggestion is something that can be opened (for example, a bookmark or a module name), SNinja will immediately open it. If it can't be opened, the cursor will move to the end of the suggestion and wait for an additional command.&lt;/li&gt;
-			&lt;li&gt;If you type the name of a table, you need to add a . and a command. Search below for possible commands.&lt;/li&gt;
-			&lt;li&gt;SNinja was made by$[SP]&lt;a href="https://github.com/salcosta"&gt;salcosta&lt;/a&gt;, and all the useful bits that work are due to him. I just added a bunch of minor features (and all the bugs) - Adam&lt;/li&gt;
-		&lt;/ul&gt;
-		&lt;h2&gt;Commands&lt;/h2&gt;
-		&lt;input ng-model="command_search_box" placeholder="Type to search" autofocus="true" id="search_box"&gt;&lt;/input&gt;
-		&lt;br /&gt;
-		&lt;div class="panel-group" id="accordion" ng-repeat="c in sninjaCommands | filter: { name: command_search_box} | orderBy : 'name'"&gt;
-			&lt;div class="panel panel-default"&gt;
-				&lt;div class="panel-heading"&gt;
-					&lt;h3 class="panel-title"&gt;
-						&lt;a data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}"&gt;
-							&lt;b&gt;{{ c.name }}&lt;/b&gt;
-						&lt;/a&gt;
-					&lt;/h3&gt;
-					&lt;div id="collapse{{$index}}" class="panel-collapse accordion-body collapse"&gt;
-						&lt;p ng-if="c.context"&gt;&lt;b&gt;Context:$[SP]&lt;/b&gt; {{ c.context }}&lt;/p&gt;
-						&lt;p&gt;{{ c.description }}&lt;/p&gt;
-						&lt;!-- &lt;pre&gt;{{ c.command }}&lt;/pre&gt; --&gt;
-					&lt;/div&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;a href="http://snaug.com/?p=96"&gt;SNAUG&lt;/a&gt;&lt;br /&gt;
-	&lt;a href="https://github.com/salcosta/sninja"&gt;GitHub&lt;/a&gt;
-&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;sninja_help&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-06-12 10:06:57&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;7fb87cbd4f1332001db78c318110c7b4&lt;/sys_id&gt;&lt;sys_mod_count&gt;70&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja_help&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_7fb87cbd4f1332001db78c318110c7b4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-06-22 13:11:41&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
-<payload_hash/>
-<remote_update_set display_value="Snaug - SNinja - Final">8e0bfdfbdb384780fdbb74b5ae9619dd</remote_update_set>
-<replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>460bfdfbdb384780fdbb74b5ae9619df</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>15d174e8c500000000</sys_recorded_at>
-<sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
-<table/>
-<target_name>sninja_help</target_name>
-<type>UI Page</type>
-<update_domain>global</update_domain>
-<update_guid/>
-<update_guid_history/>
-<update_set display_value=""/>
-<view/>
-</sys_update_xml>
-<sys_update_xml action="INSERT_OR_UPDATE">
-<action>INSERT_OR_UPDATE</action>
-<application display_value="Global">global</application>
-<category>retrieved</category>
-<comments/>
-<name>content_css_958988c62bc0310043ce127c17da15df</name>
-<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="content_css"><content_css action="INSERT_OR_UPDATE"><name>sninja</name><style>.sninja-search-container{&#13;
-    display: none;&#13;
-    z-index: 101;&#13;
-    height: 100px;&#13;
-    width: 400px;&#13;
-    position: fixed;&#13;
-    left: 30px;&#13;
-    top: 30px;&#13;
-&#13;
-}&#13;
-&#13;
-.sninja-search-container input{&#13;
-    font-family: 'Open Sans', sans-serif;&#13;
-    width: 100%;&#13;
-    font-size: 24px;&#13;
-    height:50px;&#13;
-    padding:10px;&#13;
-    border:none;&#13;
-    background: #082A3A;&#13;
-    color:#fff;&#13;
-}&#13;
-&#13;
-.sninja-search-container input:focus{&#13;
-    outline: none&#13;
-}&#13;
-&#13;
-span.twitter-typeahead .tt-dropdown-menu {&#13;
-  position: absolute;&#13;
-  top: 100%;&#13;
-  left: 0;&#13;
-  z-index: 1000;&#13;
-  display: none;&#13;
-  float: left;&#13;
-  min-width: 160px;&#13;
-  padding: 5px 0;&#13;
-  margin: 2px 0 0;&#13;
-  list-style: none;&#13;
-  font-size: 14px;&#13;
-  text-align: left;&#13;
-  background-color: #082A3A;&#13;
-  border: 1px solid #cccccc;&#13;
-  border: 1px solid rgba(0, 0, 0, 0.15);&#13;
-  &#13;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);&#13;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);&#13;
-  background-clip: padding-box;&#13;
-}&#13;
-&#13;
-span.twitter-typeahead .tt-suggestion &gt; p {&#13;
-  display: block;&#13;
-  padding: 3px 20px;&#13;
-  clear: both;&#13;
-  font-weight: normal;&#13;
-  line-height: 1.42857143;&#13;
-  color: #ffffff;&#13;
-  white-space: nowrap;&#13;
-}&#13;
-span.twitter-typeahead .tt-suggestion &gt; p:hover,&#13;
-span.twitter-typeahead .tt-suggestion &gt; p:focus {&#13;
-  color: #333;&#13;
-  text-decoration: none;&#13;
-  outline: 0;&#13;
-  background-color: #E9D038;&#13;
-}&#13;
-span.twitter-typeahead .tt-suggestion.tt-cursor {&#13;
-  color: #333;&#13;
-  background-color: #E9D038;&#13;
-}&#13;
-span.twitter-typeahead {&#13;
-  width: 100%;&#13;
-}&#13;
-.input-group span.twitter-typeahead {&#13;
-  display: block !important;&#13;
-}&#13;
-.input-group span.twitter-typeahead .tt-dropdown-menu {&#13;
-  top: 32px !important;&#13;
-}&#13;
-.input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {&#13;
-  top: 44px !important;&#13;
-}&#13;
-.input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {&#13;
-  top: 28px !important;&#13;
-}</style><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:07:36</sys_created_on><sys_id>958988c62bc0310043ce127c17da15df</sys_id><sys_mod_count>27</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:23</sys_updated_on><type>local</type><url/></content_css><sys_app_file action="INSERT_OR_UPDATE"><customer_update>true</customer_update><publish_override/><replace_on_upgrade>false</replace_on_upgrade><restore/><sys_app/><sys_code>!!2.P/</sys_code><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:07:36</sys_created_on><sys_id>a68988c62bc0310043ce127c17da15e1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sninja</sys_name><sys_parent/><sys_path>!!2.P/</sys_path><sys_policy/><sys_source_deleted>false</sys_source_deleted><sys_source_id>958988c62bc0310043ce127c17da15df</sys_source_id><sys_source_table>content_css</sys_source_table><sys_type/><sys_update_name>content_css_958988c62bc0310043ce127c17da15df</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:23</sys_updated_on></sys_app_file></record_update>]]></payload>
-<payload_hash/>
-<remote_update_set display_value="Snaug - SNinja - Final">8e0bfdfbdb384780fdbb74b5ae9619dd</remote_update_set>
-<replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>4a0bfdfbdb384780fdbb74b5ae9619de</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>15d174e8c500000000</sys_recorded_at>
-<sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
-<table/>
-<target_name>sninja</target_name>
-<type>Style Sheet</type>
-<update_domain>global</update_domain>
-<update_guid/>
-<update_guid_history/>
-<update_set display_value=""/>
-<view/>
-</sys_update_xml>
-<sys_update_xml action="INSERT_OR_UPDATE">
-<action>INSERT_OR_UPDATE</action>
-<application display_value="Global">global</application>
-<category>retrieved</category>
-<comments/>
-<name>sys_ui_script_b56248862bc0310043ce127c17da15a3</name>
-<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_script"&gt;&lt;sys_ui_script action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;description/&gt;&lt;global&gt;true&lt;/global&gt;&lt;name&gt;sninja_loader&lt;/name&gt;&lt;script&gt;&lt;![CDATA[(function () {
-	if (typeof GlideAjax != "undefined") {
-		// only show in gsft_main
-		console.log('Sninja Starting Loading');
-		[
-			'958988c62bc0310043ce127c17da15df.cssdbx', // + "?ts=" + new Date().getTime(),
-			'https://fonts.googleapis.com/css?family=Open+Sans'
-		].forEach(function(src) {
-			var link = document.createElement('link');
-			link.href = src;
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			document.head.appendChild(link);
-		});
-
-		[
-			'//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js',
-			//'//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.js',
-			'//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js',
-			'sninja.jsdbx' // + "?ts=" + new Date().getTime() // add timestamp to avoid caching issues
-		].forEach(function(src) {
-			var script = document.createElement('script');
-			script.src = src;
-			script.async = false;
-			script.type = 'text/javascript';
-			document.head.appendChild(script);
-		});
-
-		setTimeout(function(){
-			console.log('Sninja Finished Loading');
-		},1);
-
-		if (top.sninja)
-			top.window.onkeydown = top.sninja.processEvent;
-
-		// navigator
-		if (typeof this.GlideAjax != "undefined") {
-			this.parent.window.addEventListener(
-				"keydown",
-				function (e) {
-					var boundKey = (navigator.language == "en-GB"
-									&amp;&amp; typeof InstallTrigger == 'undefined')
-										? 223
-										: 192;
-					if (e.which == boundKey) {
-						sninja.loadSearch();						
-						e.preventDefault();
-						e.stopPropagation();
-					}
-				},
-				false
-			);
-			this.window.addEventListener(
-				"keydown",
-				function (e) {
-					var boundKey = (navigator.language == "en-GB"
-									&amp;&amp; typeof InstallTrigger == 'undefined')
-										? 223
-										: 192;
-					if (e.which == boundKey &amp;&amp; this.sninja.visible == false) {
-						sninja.loadSearch();						
-						e.preventDefault();
-						e.stopPropagation();
-					}
-				},
-				false
-			);
-		}
-	}
-})();]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 02:37:07&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;b56248862bc0310043ce127c17da15a3&lt;/sys_id&gt;&lt;sys_mod_count&gt;102&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja_loader&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_b56248862bc0310043ce127c17da15a3&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-07-04 10:05:15&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
-<payload_hash/>
-<remote_update_set display_value="Snaug - SNinja - Final">8e0bfdfbdb384780fdbb74b5ae9619dd</remote_update_set>
-<replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>820b3dffdb384780fdbb74b5ae961950</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>15d174e8c500000000</sys_recorded_at>
-<sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
-<table/>
-<target_name>sninja_loader</target_name>
-<type>UI Script</type>
-<update_domain>global</update_domain>
-<update_guid/>
-<update_guid_history/>
-<update_set display_value=""/>
-<view/>
-</sys_update_xml>
-<sys_update_xml action="INSERT_OR_UPDATE">
-<action>INSERT_OR_UPDATE</action>
-<application display_value="Global">global</application>
-<category>retrieved</category>
-<comments/>
-<name>sys_script_include_f9099d6c2b5831009728f70a89da1546</name>
-<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.SNinja&lt;/api_name&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;SNinja&lt;/name&gt;&lt;script&gt;&lt;![CDATA[gs.include("JSON");
-var SNinja = Class.create();
-
-SNinja.prototype = Object.extendsObject(AbstractAjaxProcessor, {
-	getUserPermission : function(){
-		return gs.getPreference("sninja.run", false);
-	},
-
-	getACValues : function(){
-		var tableRec = new GlideRecord('sys_documentation');
-		tableRec.addQuery('element=NULL^nameNOT LIKEts_c^language=en^nameNOT LIKE0');
-		tableRec.query();
-		var searches = {
-			tables: [],
-			modules: [],
-			bookmarks: []
-		};
-
-		while(tableRec.next()) {
-			searches.tables.push({
-				value : tableRec.name.toString(),
-				section : 'Tables',
-				type : 'table',
-				tokens : [tableRec.name.toString(), tableRec.label.toString()]
-			});
-		}
-
-		var moduleRec = new GlideRecord('sys_app_module');
-		moduleRec.addEncodedQuery(
-			'link_typeINLIST,NEW,REPORT,SCRIPT,DETAIL,DIRECT^active=true'
-		);
-		moduleRec.query();
-
-		while(moduleRec.next()) {
-			searches.modules.push({
-				value : moduleRec.title.getDisplayValue().toString() + " (" + moduleRec.application.getDisplayValue() + ")",
-				title : moduleRec.title.getDisplayValue().toString(),
-				section : moduleRec.application.getDisplayValue(),
-				type : moduleRec.link_type.toString().toLowerCase(),
-				tokens : [moduleRec.title.getDisplayValue()],
-				link : moduleRec.name.toString(),
-				id : moduleRec.sys_id.toString(),
-				parms : moduleRec.filter.toString(),
-				view : moduleRec.view_name.toString(),
-				report : moduleRec.report.toString(),
-				args : moduleRec.query.toString()
-			});
-		}
-
-		var bookmarkRec = new GlideRecord("sys_ui_bookmark");
-		bookmarkRec.addQuery("user", gs.getUserID());
-		bookmarkRec.orderBy("order");
-		bookmarkRec.query();
-
-		while (bookmarkRec.next()) {
-			searches.bookmarks.push({
-				link: bookmarkRec.url.toString(),
-				tokens: [bookmarkRec.title.toString()],
-				type: 'bookmark',
-				value: bookmarkRec.title.toString().replace(/\./g, " ")
-			});
-		}
-
-		return new JSON().encode(searches);
-	},
-
-	getHistoryValues: function () {
-		var searches = [];
-		var historyRec = new GlideRecord("sys_ui_navigator_history");
-		historyRec.addQuery("sys_created_by", gs.getUser().name);
-		historyRec.orderByDesc("sys_created_on");
-		historyRec.setLimit(20);
-		historyRec.query();
-		var title;
-		while (historyRec.next()) {
-			searches.push({
-				link: historyRec.url.toString(),
-				tokens: [historyRec.title.toString(), historyRec.description.toString()],
-				type: 'history',
-				title: historyRec.title.toString(),
-				description: historyRec.description.toString().replace(/\./g, " ")
-			});
-		}
-		
-		return new JSON().encode(searches);
-	}
-
-});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-11-07 03:19:50&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;f9099d6c2b5831009728f70a89da1546&lt;/sys_id&gt;&lt;sys_mod_count&gt;38&lt;/sys_mod_count&gt;&lt;sys_name&gt;SNinja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_f9099d6c2b5831009728f70a89da1546&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-06-20 11:51:42&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
-<payload_hash/>
-<remote_update_set display_value="Snaug - SNinja - Final">8e0bfdfbdb384780fdbb74b5ae9619dd</remote_update_set>
-<replace_on_upgrade>false</replace_on_upgrade>
-<sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>820bfdfbdb384780fdbb74b5ae9619df</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>15d174e8c500000000</sys_recorded_at>
-<sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
-<table/>
-<target_name>SNinja</target_name>
-<type>Script Include</type>
 <update_domain>global</update_domain>
 <update_guid/>
 <update_guid_history/>
@@ -1118,7 +720,7 @@ SNinja.prototype = Object.extendsObject(AbstractAjaxProcessor, {
 (function($) {
 
 	sninja = {
-		boundKey: (navigator.language == "en-GB"
+		boundKey: (navigator.language == "en-GB" 
 					&amp;&amp; typeof InstallTrigger == 'undefined')
 						? 223
 						: 192, // US / UK keyboards have different keycodes for ` in Chrome and FireFox
@@ -1766,23 +1368,421 @@ SNinja.prototype = Object.extendsObject(AbstractAjaxProcessor, {
 		sninja.init();
 	});
 
-})(jQuery);]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 03:02:29&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;4e58c8c62bc0310043ce127c17da159a&lt;/sys_id&gt;&lt;sys_mod_count&gt;389&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_4e58c8c62bc0310043ce127c17da159a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-09-01 09:34:37&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
-<payload_hash>-1058385222</payload_hash>
-<remote_update_set display_value="Snaug - SNinja - Final">8e0bfdfbdb384780fdbb74b5ae9619dd</remote_update_set>
+})(jQuery);]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 03:02:29&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;4e58c8c62bc0310043ce127c17da159a&lt;/sys_id&gt;&lt;sys_mod_count&gt;388&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_4e58c8c62bc0310043ce127c17da159a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-11-13 11:36:27&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
+<payload_hash>-1876484414</payload_hash>
+<remote_update_set display_value="snaug_sninja">01935e5fdbd24780c1ce776baf9619ea</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>adam.foster</sys_created_by>
-<sys_created_on>2017-09-01 09:35:41</sys_created_on>
-<sys_id>ce0b3dffdb384780fdbb74b5ae96194f</sys_id>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>49935e5fdbd24780c1ce776baf9619eb</sys_id>
 <sys_mod_count>0</sys_mod_count>
-<sys_recorded_at>15e3ccacecb0000001</sys_recorded_at>
+<sys_recorded_at>15fb52a94220000001</sys_recorded_at>
 <sys_updated_by>adam.foster</sys_updated_by>
-<sys_updated_on>2017-09-01 09:35:41</sys_updated_on>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
 <table/>
 <target_name>sninja</target_name>
 <type>UI Script</type>
 <update_domain>global</update_domain>
-<update_guid>62ca35ff28384780be7ca9f05fae83ae</update_guid>
-<update_guid_history>62ca35ff28384780be7ca9f05fae83ae:-1058385222,1e7a3dbf6138478004c2e239c8c2c14a:1807143696,5ff735fb2534870068cd83907775dafe:-1249356261,ac021ef6c6fc030033a72f49ff62fb38:-1166411236</update_guid_history>
+<update_guid>36b21e5f13d24780987d042eea750730</update_guid>
+<update_guid_history>36b21e5f13d24780987d042eea750730:-1876484414,63725e17ac92478001092fe4ec6a78f1:-1058385222,-108215253:-108215253,-367819294:-367819294,-76831907:-76831907,-367819294:-367819294,-1166411236:-1166411236</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>retrieved</category>
+<comments/>
+<name>sys_ui_page_7fb87cbd4f1332001db78c318110c7b4</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[var app = angular.module('sninjaHelpApp', []);
+app.controller('sninjaHelpCtrl', function($scope, $http) {
+	$scope.getSninja = function () {
+		if (typeof sninja == "undefined") {
+			setTimeout($scope.getSninja, 100);
+		} else {
+			$scope.sninjaCommands = ["name", "Loading..."];
+			angular.forEach(sninja.commands, function(value, key) {
+				if (typeof value.description != "undefined") {
+					value.name = key;
+					value.command = value.command.toString();				
+					this.push(value);
+				}
+			}, $scope.sninjaCommands);
+			//$scope.sninjaCommands.shift();
+		}		
+	};
+
+	$scope.getSninja();
+});]]&gt;&lt;/client_script&gt;&lt;description&gt;List commands for SNinja&lt;/description&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint/&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"&gt;&lt;/script&gt;
+	&lt;div ng-app="sninjaHelpApp" ng-controller="sninjaHelpCtrl"&gt;
+		&lt;h1&gt;SNinja Help&lt;/h1&gt;
+		&lt;h2&gt;How to use SNinja&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;To use SNinja, you need to create a user preference for each person using it with the name sninja.run. The type should be true | false, and the value should be true. This will take effect next time the user logs in.&lt;/li&gt;
+			&lt;li&gt;To open the search, press the backtick ( ` ) key on your keyboard. This is the one at the top-left, beneath Escape.&lt;/li&gt;
+			&lt;li&gt;To cycle between searching the navigator, your bookmarks and your history, press Space when there's nothing in the search field. The icon above the search will change to reflect what you're searching. Your history takes a few seconds to load, so if you cycle to the history and the placeholder says "History - loading..." you'll need to wait a moment for it to finish.&lt;/li&gt;
+			&lt;li&gt;To cycle between opening your search in the same window or a new window/tab, press backtick again. A + symbol will appear beneath the search when you're opening the search in a new window/tab.&lt;/li&gt;
+			&lt;li&gt;As you type, SNinja will suggest possible matches. If you press Tab, the cursor will move to the end of the suggestion. If you press Tab again, you'll get the option to search within your selection. If you press Enter and the current suggestion is something that can be opened (for example, a bookmark or a module name), SNinja will immediately open it. If it can't be opened, the cursor will move to the end of the suggestion and wait for an additional command.&lt;/li&gt;
+			&lt;li&gt;If you type the name of a table, you need to add a . and a command. Search below for possible commands.&lt;/li&gt;
+			&lt;li&gt;SNinja was made by$[SP]&lt;a href="https://github.com/salcosta"&gt;salcosta&lt;/a&gt;, and all the useful bits that work are due to him. I just added a bunch of minor features (and all the bugs) - Adam&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;h2&gt;Commands&lt;/h2&gt;
+		&lt;input ng-model="command_search_box" placeholder="Type to search" autofocus="true" id="search_box"&gt;&lt;/input&gt;
+		&lt;br /&gt;
+		&lt;div class="panel-group" id="accordion" ng-repeat="c in sninjaCommands | filter: { name: command_search_box} | orderBy : 'name'"&gt;
+			&lt;div class="panel panel-default"&gt;
+				&lt;div class="panel-heading"&gt;
+					&lt;h3 class="panel-title"&gt;
+						&lt;a data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}"&gt;
+							&lt;b&gt;{{ c.name }}&lt;/b&gt;
+						&lt;/a&gt;
+					&lt;/h3&gt;
+					&lt;div id="collapse{{$index}}" class="panel-collapse accordion-body collapse"&gt;
+						&lt;p ng-if="c.context"&gt;&lt;b&gt;Context:$[SP]&lt;/b&gt; {{ c.context }}&lt;/p&gt;
+						&lt;p&gt;{{ c.description }}&lt;/p&gt;
+						&lt;!-- &lt;pre&gt;{{ c.command }}&lt;/pre&gt; --&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;a href="http://snaug.com/?p=96"&gt;SNAUG&lt;/a&gt;&lt;br /&gt;
+	&lt;a href="https://github.com/salcosta/sninja"&gt;GitHub&lt;/a&gt;
+&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;sninja_help&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-06-12 10:06:57&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;7fb87cbd4f1332001db78c318110c7b4&lt;/sys_id&gt;&lt;sys_mod_count&gt;70&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja_help&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_7fb87cbd4f1332001db78c318110c7b4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-06-22 13:11:41&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+<payload_hash/>
+<remote_update_set display_value="snaug_sninja">01935e5fdbd24780c1ce776baf9619ea</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>adam.foster</sys_created_by>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>85935e5fdbd24780c1ce776baf9619eb</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>15fb4d166580000000</sys_recorded_at>
+<sys_updated_by>adam.foster</sys_updated_by>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
+<table/>
+<target_name>sninja_help</target_name>
+<type>UI Page</type>
+<update_domain>global</update_domain>
+<update_guid/>
+<update_guid_history>c7831cf167da830092bdc173be137a8b:-721987317</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>retrieved</category>
+<comments/>
+<name>sys_script_include_f9099d6c2b5831009728f70a89da1546</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.SNinja&lt;/api_name&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;SNinja&lt;/name&gt;&lt;script&gt;&lt;![CDATA[gs.include("JSON");
+var SNinja = Class.create();
+
+SNinja.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+	getUserPermission : function(){
+		return gs.getPreference("sninja.run", false);
+	},
+
+	getACValues : function(){
+		var tableRec = new GlideRecord('sys_documentation');
+		tableRec.addQuery('element=NULL^nameNOT LIKEts_c^language=en^nameNOT LIKE0');
+		tableRec.query();
+		var searches = {
+			tables: [],
+			modules: [],
+			bookmarks: []
+		};
+
+		while(tableRec.next()) {
+			searches.tables.push({
+				value : tableRec.name.toString(),
+				section : 'Tables',
+				type : 'table',
+				tokens : [tableRec.name.toString(), tableRec.label.toString()]
+			});
+		}
+
+		var moduleRec = new GlideRecord('sys_app_module');
+		moduleRec.addEncodedQuery(
+			'link_typeINLIST,NEW,REPORT,SCRIPT,DETAIL,DIRECT^active=true'
+		);
+		moduleRec.query();
+
+		while(moduleRec.next()) {
+			searches.modules.push({
+				value : moduleRec.title.getDisplayValue().toString() + " (" + moduleRec.application.getDisplayValue() + ")",
+				title : moduleRec.title.getDisplayValue().toString(),
+				section : moduleRec.application.getDisplayValue(),
+				type : moduleRec.link_type.toString().toLowerCase(),
+				tokens : [moduleRec.title.getDisplayValue()],
+				link : moduleRec.name.toString(),
+				id : moduleRec.sys_id.toString(),
+				parms : moduleRec.filter.toString(),
+				view : moduleRec.view_name.toString(),
+				report : moduleRec.report.toString(),
+				args : moduleRec.query.toString()
+			});
+		}
+
+		var bookmarkRec = new GlideRecord("sys_ui_bookmark");
+		bookmarkRec.addQuery("user", gs.getUserID());
+		bookmarkRec.orderBy("order");
+		bookmarkRec.query();
+
+		while (bookmarkRec.next()) {
+			searches.bookmarks.push({
+				link: bookmarkRec.url.toString(),
+				tokens: [bookmarkRec.title.toString()],
+				type: 'bookmark',
+				value: bookmarkRec.title.toString().replace(/\./g, " ")
+			});
+		}
+
+		return new JSON().encode(searches);
+	},
+
+	getHistoryValues: function () {
+		var searches = [];
+		var historyRec = new GlideRecord("sys_ui_navigator_history");
+		historyRec.addQuery("sys_created_by", gs.getUser().name);
+		historyRec.orderByDesc("sys_created_on");
+		historyRec.setLimit(20);
+		historyRec.query();
+		var title;
+		while (historyRec.next()) {
+			searches.push({
+				link: historyRec.url.toString(),
+				tokens: [historyRec.title.toString(), historyRec.description.toString()],
+				type: 'history',
+				title: historyRec.title.toString(),
+				description: historyRec.description.toString().replace(/\./g, " ")
+			});
+		}
+		
+		return new JSON().encode(searches);
+	}
+
+});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-11-07 03:19:50&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;f9099d6c2b5831009728f70a89da1546&lt;/sys_id&gt;&lt;sys_mod_count&gt;38&lt;/sys_mod_count&gt;&lt;sys_name&gt;SNinja&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_f9099d6c2b5831009728f70a89da1546&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-06-20 11:51:42&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+<payload_hash/>
+<remote_update_set display_value="snaug_sninja">01935e5fdbd24780c1ce776baf9619ea</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>adam.foster</sys_created_by>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>c1935e5fdbd24780c1ce776baf9619eb</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>15fb4d166580000000</sys_recorded_at>
+<sys_updated_by>adam.foster</sys_updated_by>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
+<table/>
+<target_name>SNinja</target_name>
+<type>Script Include</type>
+<update_domain>global</update_domain>
+<update_guid/>
+<update_guid_history>87831cf1d5da83000fb0f1dcb967e789:-2037814069</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>retrieved</category>
+<comments/>
+<name>content_css_958988c62bc0310043ce127c17da15df</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="content_css"><content_css action="INSERT_OR_UPDATE"><name>sninja</name><style>.sninja-search-container{&#13;
+    display: none;&#13;
+    z-index: 101;&#13;
+    height: 100px;&#13;
+    width: 400px;&#13;
+    position: fixed;&#13;
+    left: 30px;&#13;
+    top: 30px;&#13;
+&#13;
+}&#13;
+&#13;
+.sninja-search-container input{&#13;
+    font-family: 'Open Sans', sans-serif;&#13;
+    width: 100%;&#13;
+    font-size: 24px;&#13;
+    height:50px;&#13;
+    padding:10px;&#13;
+    border:none;&#13;
+    background: #082A3A;&#13;
+    color:#fff;&#13;
+}&#13;
+&#13;
+.sninja-search-container input:focus{&#13;
+    outline: none&#13;
+}&#13;
+&#13;
+span.twitter-typeahead .tt-dropdown-menu {&#13;
+  position: absolute;&#13;
+  top: 100%;&#13;
+  left: 0;&#13;
+  z-index: 1000;&#13;
+  display: none;&#13;
+  float: left;&#13;
+  min-width: 160px;&#13;
+  padding: 5px 0;&#13;
+  margin: 2px 0 0;&#13;
+  list-style: none;&#13;
+  font-size: 14px;&#13;
+  text-align: left;&#13;
+  background-color: #082A3A;&#13;
+  border: 1px solid #cccccc;&#13;
+  border: 1px solid rgba(0, 0, 0, 0.15);&#13;
+  &#13;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);&#13;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);&#13;
+  background-clip: padding-box;&#13;
+}&#13;
+&#13;
+span.twitter-typeahead .tt-suggestion &gt; p {&#13;
+  display: block;&#13;
+  padding: 3px 20px;&#13;
+  clear: both;&#13;
+  font-weight: normal;&#13;
+  line-height: 1.42857143;&#13;
+  color: #ffffff;&#13;
+  white-space: nowrap;&#13;
+}&#13;
+span.twitter-typeahead .tt-suggestion &gt; p:hover,&#13;
+span.twitter-typeahead .tt-suggestion &gt; p:focus {&#13;
+  color: #333;&#13;
+  text-decoration: none;&#13;
+  outline: 0;&#13;
+  background-color: #E9D038;&#13;
+}&#13;
+span.twitter-typeahead .tt-suggestion.tt-cursor {&#13;
+  color: #333;&#13;
+  background-color: #E9D038;&#13;
+}&#13;
+span.twitter-typeahead {&#13;
+  width: 100%;&#13;
+}&#13;
+.input-group span.twitter-typeahead {&#13;
+  display: block !important;&#13;
+}&#13;
+.input-group span.twitter-typeahead .tt-dropdown-menu {&#13;
+  top: 32px !important;&#13;
+}&#13;
+.input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {&#13;
+  top: 44px !important;&#13;
+}&#13;
+.input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {&#13;
+  top: 28px !important;&#13;
+}</style><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:07:36</sys_created_on><sys_id>958988c62bc0310043ce127c17da15df</sys_id><sys_mod_count>27</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:23</sys_updated_on><type>local</type><url/></content_css><sys_app_file action="INSERT_OR_UPDATE"><customer_update>true</customer_update><publish_override/><replace_on_upgrade>false</replace_on_upgrade><restore/><sys_app/><sys_code>!!2.P/</sys_code><sys_created_by>admin</sys_created_by><sys_created_on>2014-10-30 03:07:36</sys_created_on><sys_id>a68988c62bc0310043ce127c17da15e1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sninja</sys_name><sys_parent/><sys_path>!!2.P/</sys_path><sys_policy/><sys_source_deleted>false</sys_source_deleted><sys_source_id>958988c62bc0310043ce127c17da15df</sys_source_id><sys_source_table>content_css</sys_source_table><sys_type/><sys_update_name>content_css_958988c62bc0310043ce127c17da15df</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2015-01-15 04:26:23</sys_updated_on></sys_app_file></record_update>]]></payload>
+<payload_hash/>
+<remote_update_set display_value="snaug_sninja">01935e5fdbd24780c1ce776baf9619ea</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>adam.foster</sys_created_by>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>c9935e5fdbd24780c1ce776baf9619ea</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>15fb4d166580000000</sys_recorded_at>
+<sys_updated_by>adam.foster</sys_updated_by>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
+<table/>
+<target_name>sninja</target_name>
+<type>Style Sheet</type>
+<update_domain>global</update_domain>
+<update_guid/>
+<update_guid_history>6a831cf196da8300fd33947b1093c784:-872622749</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>retrieved</category>
+<comments/>
+<name>sys_ui_script_b56248862bc0310043ce127c17da15a3</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_script"&gt;&lt;sys_ui_script action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;description/&gt;&lt;global&gt;true&lt;/global&gt;&lt;name&gt;sninja_loader&lt;/name&gt;&lt;script&gt;&lt;![CDATA[(function () {
+	if (typeof GlideAjax != "undefined") {
+		// only show in gsft_main
+		console.log('Sninja Starting Loading');
+		[
+			'958988c62bc0310043ce127c17da15df.cssdbx', // + "?ts=" + new Date().getTime(),
+			'https://fonts.googleapis.com/css?family=Open+Sans'
+		].forEach(function(src) {
+			var link = document.createElement('link');
+			link.href = src;
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			document.head.appendChild(link);
+		});
+
+		[
+			'//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js',
+			//'//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.js',
+			'//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js',
+			'sninja.jsdbx' // + "?ts=" + new Date().getTime() // add timestamp to avoid caching issues
+		].forEach(function(src) {
+			var script = document.createElement('script');
+			script.src = src;
+			script.async = false;
+			script.type = 'text/javascript';
+			document.head.appendChild(script);
+		});
+
+		setTimeout(function(){
+			console.log('Sninja Finished Loading');
+		},1);
+
+		if (top.sninja)
+			top.window.onkeydown = top.sninja.processEvent;
+
+		// navigator
+		if (typeof this.GlideAjax != "undefined") {
+			this.parent.window.addEventListener(
+				"keydown",
+				function (e) {
+					var boundKey = (navigator.language == "en-GB"
+									&amp;&amp; typeof InstallTrigger == 'undefined')
+										? 223
+										: 192;
+					if (e.which == boundKey) {
+						sninja.loadSearch();						
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				},
+				false
+			);
+			this.window.addEventListener(
+				"keydown",
+				function (e) {
+					var boundKey = (navigator.language == "en-GB"
+									&amp;&amp; typeof InstallTrigger == 'undefined')
+										? 223
+										: 192;
+					if (e.which == boundKey &amp;&amp; this.sninja.visible == false) {
+						sninja.loadSearch();						
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				},
+				false
+			);
+		}
+	}
+})();]]&gt;&lt;/script&gt;&lt;script_name/&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2014-10-30 02:37:07&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;b56248862bc0310043ce127c17da15a3&lt;/sys_id&gt;&lt;sys_mod_count&gt;102&lt;/sys_mod_count&gt;&lt;sys_name&gt;sninja_loader&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_b56248862bc0310043ce127c17da15a3&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;adam.foster&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-07-04 10:05:15&lt;/sys_updated_on&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
+<payload_hash/>
+<remote_update_set display_value="snaug_sninja">01935e5fdbd24780c1ce776baf9619ea</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>adam.foster</sys_created_by>
+<sys_created_on>2017-11-13 11:40:09</sys_created_on>
+<sys_id>cd935e5fdbd24780c1ce776baf9619eb</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>15fb4d166580000000</sys_recorded_at>
+<sys_updated_by>adam.foster</sys_updated_by>
+<sys_updated_on>2017-11-13 11:40:09</sys_updated_on>
+<table/>
+<target_name>sninja_loader</target_name>
+<type>UI Script</type>
+<update_domain>global</update_domain>
+<update_guid/>
+<update_guid_history/>
 <update_set display_value=""/>
 <view/>
 </sys_update_xml>
